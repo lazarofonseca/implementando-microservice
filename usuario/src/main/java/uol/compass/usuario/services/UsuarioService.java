@@ -1,24 +1,30 @@
 package uol.compass.usuario.services;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
+
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import uol.compass.usuario.controller.dto.AnimalDTO;
-import uol.compass.usuario.controller.dto.ListaAnimaisDTO;
 
 @Service
 public class UsuarioService {
 
-	public void getAnimal(AnimalDTO animalDTO) {
+	public List<AnimalDTO> getAnimal(String especie) {
 
 		RestTemplate usuario = new RestTemplate();
-		ResponseEntity<ListaAnimaisDTO> exchange =
-		usuario.exchange("http://localhost:8081/animais/Especie/" + animalDTO.getEspecie(),
-				HttpMethod.GET, null, ListaAnimaisDTO.class);
+		ResponseEntity<AnimalDTO[]> exchange =
+		usuario.exchange("http://localhost:8081/animais/Especie/" + especie,
+				HttpMethod.GET, null, AnimalDTO[].class);
 		
-		System.out.println(exchange.getBody().getList());
+		List<AnimalDTO> list = new ArrayList<>();
+		Stream.of(exchange.getBody()).forEach( animal -> list.add(animal));
+		
+		return list;
 
 	}
 

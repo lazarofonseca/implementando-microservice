@@ -67,11 +67,10 @@ public class AnimalService {
 				.orElseThrow(() -> new DefaultException("Animal com id: " + id + " não encontrado.", "NOT_FOUND", 404));
 		animalRepository.delete(animalObj);
 	}
-
+	
 	@Transactional
 	public List<AnimalDTO> findByEspecie(String especie) {
-		List<Animal> list = animalRepository.findByEspecie(especie);
-		System.out.println(list.get(0).getEspecie());
+		List<Animal> list = animalRepository.findByEspecie(especie.toLowerCase());
 		return instanciaListaAnimalDTO(list);
 	}
 

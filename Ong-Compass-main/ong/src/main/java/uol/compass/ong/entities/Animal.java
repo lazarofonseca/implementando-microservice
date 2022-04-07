@@ -1,5 +1,7 @@
 package uol.compass.ong.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -22,7 +24,10 @@ import uol.compass.ong.enums.Sexo;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Animal {
+public class Animal implements Serializable{
+
+	
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

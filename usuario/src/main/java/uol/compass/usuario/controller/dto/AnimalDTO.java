@@ -58,4 +58,12 @@ public class AnimalDTO {
 		this.sexo = sexo;
 	}
 
+	@Override
+	public String toString() {
+		return "AnimalDTO [id_animal=" + id_animal + ", idade=" + idade + ", porte=" + porte + ", raca=" + raca
+				+ ", sexo=" + sexo + ", especie=" + especie + "]";
+	}
+	
+	
+
 }

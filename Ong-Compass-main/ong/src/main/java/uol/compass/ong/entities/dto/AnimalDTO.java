@@ -1,5 +1,7 @@
 package uol.compass.ong.entities.dto;
 
+import java.io.Serializable;
+
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
@@ -11,7 +13,10 @@ import uol.compass.ong.enums.Sexo;
 
 @Getter
 @Setter
-public class AnimalDTO {
+public class AnimalDTO implements Serializable{
+
+	
+	private static final long serialVersionUID = 1L;
 
 	private Long id_animal;
 	

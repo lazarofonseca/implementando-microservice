@@ -1,5 +1,6 @@
 package uol.compass.ong.controllers;
 
+import java.io.Serializable;
 import java.net.URI;
 import java.util.List;
 
@@ -24,7 +25,10 @@ import uol.compass.ong.services.AnimalService;
 
 @RestController
 @RequestMapping("/animais")
-public class AnimalController {
+public class AnimalController implements Serializable{
+
+
+	private static final long serialVersionUID = 1L;
 
 	@Autowired
 	AnimalService animalService;
@@ -61,7 +65,9 @@ public class AnimalController {
 		return ResponseEntity.noContent().build();
 	}
 
-
+	/*
+	 * RETORNA UM JSON NO CORPO DA RESPOSTA
+	 * 
 	@GetMapping(path = "Especie/{especie}")
 	public ResponseEntity<List<AnimalDTO>> getListaAnimais(@PathVariable("especie") String especie) {
 		System.out.println(especie);
@@ -69,5 +75,17 @@ public class AnimalController {
 		return ResponseEntity.ok().body(listAnimais);
 
 	}
+	
+	*/
+	
+	@GetMapping(path = "Especie/{especie}")
+	public List<AnimalDTO> getListaAnimais(@PathVariable("especie") String especie) {
+		System.out.println(especie);
+		List<AnimalDTO> listAnimais = animalService.findByEspecie(especie);
+		System.out.println(listAnimais.get(0).getRaca());
+		return listAnimais;
+
+	}
+
 
 }
